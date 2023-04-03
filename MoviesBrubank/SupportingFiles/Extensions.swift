@@ -11,6 +11,7 @@ import UIKit
 extension UIColor {
     struct Movies {
         static var black_02: UIColor { return UIColor(red: 27/256, green: 27/256, blue: 27/256, alpha: 1) }
+        static var dark_blue_grey: UIColor { return UIColor(red: 30/256, green: 43/256, blue: 49/256, alpha: 1) }
     }
 }
 
@@ -19,7 +20,6 @@ extension UITableViewCell {
         return "\(String(describing: self))"
     }
 }
-
 
 extension UILabel {
     func setLineSpacing(lineSpacing: CGFloat = 0.0, lineHeightMultiple: CGFloat = 0.0) {

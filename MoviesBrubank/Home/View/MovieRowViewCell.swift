@@ -8,12 +8,9 @@
 import Foundation
 import UIKit
 
-
 class MovieRowViewCell: UITableViewCell {
     
     // MARK: - PRIVATE PROPERTIES
-    
-    // MARK: Private properties
     
     private lazy var bannerImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -30,6 +27,25 @@ class MovieRowViewCell: UITableViewCell {
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         label.textAlignment = .left
+        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private lazy var containerGenreLabel: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor.Movies.dark_blue_grey
+        view.layer.opacity = 0.67
+        view.layer.cornerRadius = 3
+        return view
+    }()
+    
+    private lazy var genreLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.numberOfLines = 0
+        label.font = UIFont.systemFont(ofSize: 12, weight: .bold)
+        label.textAlignment = .center
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -54,6 +70,8 @@ class MovieRowViewCell: UITableViewCell {
         contentView.backgroundColor = UIColor.Movies.black_02
         contentView.addSubview(bannerImageView)
         contentView.addSubview(movieMainTitle)
+        contentView.addSubview(containerGenreLabel)
+        containerGenreLabel.addSubview(genreLabel)
     }
     
     private func setupConstraints() {
@@ -66,18 +84,27 @@ class MovieRowViewCell: UITableViewCell {
             
             movieMainTitle.bottomAnchor.constraint(equalTo: bannerImageView.bottomAnchor, constant: -15),
             movieMainTitle.leadingAnchor.constraint(equalTo: bannerImageView.leadingAnchor, constant: 15),
-            movieMainTitle.trailingAnchor.constraint(equalTo: bannerImageView.trailingAnchor, constant: -15)
+            movieMainTitle.trailingAnchor.constraint(equalTo: bannerImageView.trailingAnchor, constant: -15),
+            
+            containerGenreLabel.topAnchor.constraint(equalTo: bannerImageView.topAnchor, constant: 8),
+            containerGenreLabel.trailingAnchor.constraint(equalTo: bannerImageView.trailingAnchor, constant: -6),
+            
+            genreLabel.topAnchor.constraint(equalTo: containerGenreLabel.topAnchor, constant: 4),
+            genreLabel.leadingAnchor.constraint(equalTo: containerGenreLabel.leadingAnchor, constant: 15),
+            genreLabel.bottomAnchor.constraint(equalTo: containerGenreLabel.bottomAnchor, constant: -4),
+            genreLabel.trailingAnchor.constraint(equalTo: containerGenreLabel.trailingAnchor, constant: -15),
+            
         ])
     }
     
     // MARK: INTERNAL FUNCS
-    func update(model: Movie, image: UIImage) {
+    func update(model: Movie, image: UIImage, genre: String) {
         movieMainTitle.text = model.title
         bannerImageView.image = image
+        genreLabel.text = genre.uppercased()
     }
     
     override func prepareForReuse() {
         bannerImageView.image = nil
     }
 }
-

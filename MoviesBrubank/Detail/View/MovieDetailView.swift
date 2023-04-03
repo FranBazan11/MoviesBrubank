@@ -91,7 +91,6 @@ class MovieDetailView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private func setup() {
         addSubview(backgroundImageView)
         addSubview(scrollView)
@@ -141,10 +140,4 @@ class MovieDetailView: UIView {
         backgroundImageView.image = image
         mainImageView.image = image
     }
-
 }
-
-
-
-
-

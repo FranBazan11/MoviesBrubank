@@ -31,8 +31,12 @@ class HomeViewController: UIViewController {
         setup()
         setupConstraints()
         setupNavBar()
-        
-        
+        fetchMovies()
+    }
+    
+    // MARK: - PRIVATE FUNCS
+    
+    private func fetchMovies() {
         spinner.startAnimating()
         Task {
             let movies = try await viewModel.fetchMovies()
@@ -44,8 +48,6 @@ class HomeViewController: UIViewController {
             self.spinner.stopAnimating()
         }
     }
-    
-    // MARK: - PRIVATE PROPERTIES
     
     private func setup() {
         movieListView.delegate = self

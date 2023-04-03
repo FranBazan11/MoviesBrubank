@@ -18,4 +18,5 @@ struct Movie: Codable, Hashable {
 struct MovieModel: Hashable {
     let movie: Movie
     let image: UIImage
+    let genre: String
 }

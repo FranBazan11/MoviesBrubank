@@ -36,17 +36,8 @@ class MovieDetailViewController: UIViewController {
         
         spinner.startAnimating()
         movieDetailView.update(item: item)
+        fetchImage()
         
-        Task {
-            do {
-                let image = try await loaderImage.fetchImage(with: item.posterPath)
-                movieDetailView.update(image: image)
-                self.view.backgroundColor = image.averageColor
-                spinner.stopAnimating()
-            } catch {
-                print(error.localizedDescription)
-            }
-        }
     }
     
     init(item: Movie) {
@@ -60,6 +51,19 @@ class MovieDetailViewController: UIViewController {
     }
     
     // MARK: - PRIVATE FUNCS
+    
+    private func fetchImage() {
+        Task {
+            do {
+                let image = try await loaderImage.fetchImage(with: item.posterPath)
+                movieDetailView.update(image: image)
+                self.view.backgroundColor = image.averageColor
+                spinner.stopAnimating()
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
     private func setup() {
         view.addSubview(movieDetailView)

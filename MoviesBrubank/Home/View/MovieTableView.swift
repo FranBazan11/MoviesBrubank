@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 protocol MovieTableViewDelegate: AnyObject {
     func didTap(item: Movie)
 }
@@ -81,7 +80,7 @@ class MovieTableView: UIView {
     private func makeDataSource() {
         dataSource = DataSource(tableView: movieTableView, cellProvider: { tableView, indexPath, model in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieRowViewCell.identifier(), for: indexPath) as? MovieRowViewCell else { return UITableViewCell() }
-            cell.update(model: model.movie, image: model.image)
+            cell.update(model: model.movie, image: model.image, genre: model.genre)
             return cell
         })
     }
