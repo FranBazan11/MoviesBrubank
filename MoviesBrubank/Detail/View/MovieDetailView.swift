@@ -124,7 +124,6 @@ class MovieDetailView: UIView {
             mainImageView.heightAnchor.constraint(equalToConstant: 273),
             mainImageView.widthAnchor.constraint(equalToConstant: 182),
             
-            
             subscribeButton.heightAnchor.constraint(equalToConstant: 45),
             subscribeButton.widthAnchor.constraint(equalToConstant: 195),
         ])
